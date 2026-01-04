@@ -130,6 +130,7 @@
     <ClCompile Include="Array.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Backtracking.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="HashTable.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="Backtracking.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="LinkNode.h" />
