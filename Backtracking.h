@@ -112,12 +112,13 @@ private:
 			return;
 		}
 
-		int digit = digits[index] - '0';
-		string letters = letterMap[digit];
-		for (int i = 0; i < letters.size(); i++)
+		int n = digits[index] - '0';
+		string letter = letterMap[n];
+		index += 1;
+		for (int i = 0; i < letter.size(); i++)
 		{
-			str.push_back(letters[i]);
-			backtracking(digits, index + 1);
+			str.push_back(letter[i]);
+			backtracking(digits, index);
 			str.pop_back();
 		}
 	}
