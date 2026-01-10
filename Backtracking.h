@@ -32,10 +32,18 @@ public:
 	//}
 
 	// leetcode 17 电话号码的字母组合
-	vector<string> letterCombinations(string digits) 
-	{
-		backtracking(digits, 0);
-		return str_list;
+	//vector<string> letterCombinations(string digits) 
+	//{
+	//	backtracking(digits, 0);
+	//	return str_list;
+	//}
+
+	// leetcode 39 组合总和
+	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+		patch.clear();
+		result.clear();
+		backtracking(candidates, target, 0);
+		return result;
 	}
 
 
@@ -58,6 +66,7 @@ private:
 	"wxyz", // 9
 	};
 
+	int sum = 0;
 
 	// leetcode 77 组合
 	//void backtracking(int n, int k, int startIndex)
@@ -84,7 +93,6 @@ private:
 	//	}
 	//}
 
-
 	// leetcode 216 组合总和 III
 	//void backtracking(int k, int n, int startIndex)
 	//{
@@ -102,24 +110,47 @@ private:
 	//	}
 	//}
 
-
 	// leetcode 17 电话号码的字母组合
-	void backtracking(string digits, int index)
+	//void backtracking(string digits, int index)
+	//{
+	//	if (str.size() == digits.size())
+	//	{
+	//		str_list.push_back(str);
+	//		return;
+	//	}
+
+	//	int n = digits[index] - '0';
+	//	string letter = letterMap[n];
+	//	index += 1;
+	//	for (int i = 0; i < letter.size(); i++)
+	//	{
+	//		str.push_back(letter[i]);
+	//		backtracking(digits, index);
+	//		str.pop_back();
+	//	}
+	//}
+
+
+	// leetcode 39 组合总和
+	void backtracking(vector<int>& candidates, int target, int startIndex)
 	{
-		if (str.size() == digits.size())
-		{
-			str_list.push_back(str);
+		if (sum > target) {
 			return;
 		}
 
-		int n = digits[index] - '0';
-		string letter = letterMap[n];
-		index += 1;
-		for (int i = 0; i < letter.size(); i++)
+		if (sum == target)
 		{
-			str.push_back(letter[i]);
-			backtracking(digits, index);
-			str.pop_back();
+			result.push_back(patch);
+			return;
+		}
+
+		for (int i = startIndex; i < candidates.size(); i++)
+		{
+			sum += candidates[i];
+			patch.push_back(candidates[i]);
+			backtracking(candidates, target, i);
+			sum -= candidates[i];
+			patch.pop_back();
 		}
 	}
 
