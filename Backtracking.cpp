@@ -13,8 +13,8 @@ int main()
 
 	//str_list = back_track->letterCombinations("23");
 
-	vector<int> candidates = { 2, 3, 6, 7 };
-	result = back_track->combinationSum(candidates, 7);
+	vector<int> candidates = { 2, 5, 2, 1, 2 };
+	result = back_track->combinationSum2(candidates, 5);
 
 	//for (int i = 0; i < result.size(); i++) {       
 	//	for (int j = 0; j < result[i].size(); j++) {  

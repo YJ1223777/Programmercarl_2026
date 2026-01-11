@@ -39,7 +39,16 @@ public:
 	//}
 
 	// leetcode 39 组合总和
-	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+	//vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+	//	patch.clear();
+	//	result.clear();
+	//	backtracking(candidates, target, 0);
+	//	return result;
+	//}
+
+
+	// leetcode 39 组合总和 II
+	vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
 		patch.clear();
 		result.clear();
 		backtracking(candidates, target, 0);
@@ -132,7 +141,31 @@ private:
 
 
 	// leetcode 39 组合总和
-	void backtracking(vector<int>& candidates, int target, int startIndex)
+	//void backtracking(vector<int>& candidates, int target, int startIndex)
+	//{
+	//	if (sum > target) {
+	//		return;
+	//	}
+
+	//	if (sum == target)
+	//	{
+	//		result.push_back(patch);
+	//		return;
+	//	}
+
+	//	for (int i = startIndex; i < candidates.size(); i++)
+	//	{
+	//		sum += candidates[i];
+	//		patch.push_back(candidates[i]);
+	//		backtracking(candidates, target, i);
+	//		sum -= candidates[i];
+	//		patch.pop_back();
+	//	}
+	//}
+
+
+	// leetcode 40 组合总和 II
+	void backtracking(vector<int>& candidates, int target, int startIndex, vector<bool>& used)
 	{
 		if (sum > target) {
 			return;
@@ -151,7 +184,7 @@ private:
 			backtracking(candidates, target, i);
 			sum -= candidates[i];
 			patch.pop_back();
-		}
+		}	
 	}
 
 };
