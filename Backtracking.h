@@ -49,9 +49,11 @@ public:
 
 	// leetcode 39 组合总和 II
 	vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+		vector<bool> used(candidates.size(), false);
 		patch.clear();
 		result.clear();
-		backtracking(candidates, target, 0);
+		sort(candidates.begin(), candidates.end());
+		backtracking(candidates, target, 0, used);
 		return result;
 	}
 
@@ -167,23 +169,25 @@ private:
 	// leetcode 40 组合总和 II
 	void backtracking(vector<int>& candidates, int target, int startIndex, vector<bool>& used)
 	{
-		if (sum > target) {
-			return;
-		}
-
 		if (sum == target)
 		{
 			result.push_back(patch);
 			return;
 		}
 
-		for (int i = startIndex; i < candidates.size(); i++)
+		for (int i = startIndex; i < candidates.size() && sum + candidates[i] <= target; i++)
 		{
+			if (i > 0 && candidates[i] == candidates[i-1] && used[i-1] == 0)
+			{
+				continue;
+			}
 			sum += candidates[i];
 			patch.push_back(candidates[i]);
-			backtracking(candidates, target, i);
+			used[i] = true;
+			backtracking(candidates, target, i+1, used);
 			sum -= candidates[i];
 			patch.pop_back();
+			used[i] = false;
 		}	
 	}
 
