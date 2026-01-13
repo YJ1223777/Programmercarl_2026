@@ -48,13 +48,22 @@ public:
 
 
 	// leetcode 39 组合总和 II
-	vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-		vector<bool> used(candidates.size(), false);
-		patch.clear();
-		result.clear();
-		sort(candidates.begin(), candidates.end());
-		backtracking(candidates, target, 0, used);
-		return result;
+	//vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+	//	vector<bool> used(candidates.size(), false);
+	//	patch.clear();
+	//	result.clear();
+	//	sort(candidates.begin(), candidates.end());
+	//	backtracking(candidates, target, 0, used);
+	//	return result;
+	//}
+
+
+	// leetcode 131 分割回文串
+	vector<vector<string>> partition(string s) {
+		str_result.clear();
+		str_path.clear();
+		backtracking(s, 0);
+		return str_result;
 	}
 
 
@@ -78,6 +87,9 @@ private:
 	};
 
 	int sum = 0;
+
+	vector<vector<string>> str_result;
+	vector<string> str_path;
 
 	// leetcode 77 组合
 	//void backtracking(int n, int k, int startIndex)
@@ -167,28 +179,68 @@ private:
 
 
 	// leetcode 40 组合总和 II
-	void backtracking(vector<int>& candidates, int target, int startIndex, vector<bool>& used)
+	//void backtracking(vector<int>& candidates, int target, int startIndex, vector<bool>& used)
+	//{
+	//	if (sum == target)
+	//	{
+	//		result.push_back(patch);
+	//		return;
+	//	}
+
+	//	for (int i = startIndex; i < candidates.size() && sum + candidates[i] <= target; i++)
+	//	{
+	//		if (i > 0 && candidates[i] == candidates[i-1] && used[i-1] == 0)
+	//		{
+	//			continue;
+	//		}
+	//		sum += candidates[i];
+	//		patch.push_back(candidates[i]);
+	//		used[i] = true;
+	//		backtracking(candidates, target, i+1, used);
+	//		sum -= candidates[i];
+	//		patch.pop_back();
+	//		used[i] = false;
+	//	}	
+	//}
+
+
+	// 判断是否是回文字符串
+	bool isString(const string& str, int start, int end)
 	{
-		if (sum == target)
+		for (int i = start, j = end; i <= j; i++, j--)
 		{
-			result.push_back(patch);
+			if (str[i] != str[j]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// leetcode 131 分割回文串
+	void backtracking(const string& s, int startIndex)
+	{
+		if (startIndex >= s.size())
+		{
+			str_result.push_back(str_path);
 			return;
 		}
 
-		for (int i = startIndex; i < candidates.size() && sum + candidates[i] <= target; i++)
+		for (int i = startIndex; i < s.size(); i++)
 		{
-			if (i > 0 && candidates[i] == candidates[i-1] && used[i-1] == 0)
+			if (isString(s, startIndex, i))
 			{
+				string st = s.substr(startIndex, i - startIndex + 1);
+				str_path.push_back(st);
+			}
+			else {
 				continue;
 			}
-			sum += candidates[i];
-			patch.push_back(candidates[i]);
-			used[i] = true;
-			backtracking(candidates, target, i+1, used);
-			sum -= candidates[i];
-			patch.pop_back();
-			used[i] = false;
-		}	
+
+			backtracking(s, i + 1);
+			str_path.pop_back();
+		}
 	}
+
+
 
 };
