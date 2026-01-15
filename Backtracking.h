@@ -59,11 +59,19 @@ public:
 
 
 	// leetcode 131 分割回文串
-	vector<vector<string>> partition(string s) {
-		str_result.clear();
-		str_path.clear();
-		backtracking(s, 0);
-		return str_result;
+	//vector<vector<string>> partition(string s) {
+	//	str_result.clear();
+	//	str_path.clear();
+	//	backtracking(s, 0);
+	//	return str_result;
+	//}
+
+
+	// leetcode 93 复原 IP 地址
+	vector<string> restoreIpAddresses(string s) {
+		str_list.clear();
+		backtracking(s, 0, 0);
+		return str_list;
 	}
 
 
@@ -204,44 +212,98 @@ private:
 	//}
 
 
-	// 判断是否是回文字符串
-	bool isString(const string& str, int start, int end)
+	//// 判断是否是回文字符串
+	//bool isPalindrome(const string& str, int start, int end)
+	//{
+	//	for (int i = start, j = end; i <= j; i++, j--)
+	//	{
+	//		if (str[i] != str[j]) {
+	//			return false;
+	//		}
+	//	}
+	//	return true;
+	//}
+
+	//// leetcode 131 分割回文串
+	//void backtracking(const string& s, int startIndex)
+	//{
+	//	if (startIndex >= s.size())
+	//	{
+	//		str_result.push_back(str_path);
+	//		return;
+	//	}
+
+	//	for (int i = startIndex; i < s.size(); i++)
+	//	{
+	//		if (isPalindrome(s, startIndex, i))
+	//		{
+	//			string st = s.substr(startIndex, i - startIndex + 1);
+	//			str_path.push_back(st);
+	//		}
+	//		else {
+	//			continue;
+	//		}
+
+	//		backtracking(s, i + 1);
+	//		str_path.pop_back();
+	//	}
+	//}
+
+
+	bool isIP(const string& str, int start, int end)
 	{
-		for (int i = start, j = end; i <= j; i++, j--)
+		if (start > end)
 		{
-			if (str[i] != str[j]) {
+			return false;
+		}
+
+		if (str[start] == '0' && start != end)
+		{
+			return false;
+		}
+
+		int num = 0;
+		for (int i = start; i <= end; i++)
+		{
+			if (str[i] < '0' || str[i] > '9')
+			{
+				return false;
+			}
+			num = num * 10 + str[i] - '0';
+			if (num > 255)
+			{
 				return false;
 			}
 		}
 		return true;
 	}
 
-	// leetcode 131 分割回文串
-	void backtracking(const string& s, int startIndex)
+	void backtracking(string& s, int startIndex, int pointNum)
 	{
-		if (startIndex >= s.size())
+		if (pointNum == 3)
 		{
-			str_result.push_back(str_path);
+			if (isIP(s, startIndex, s.size() -1))
+			{
+				str_list.push_back(s);
+			}
 			return;
 		}
 
 		for (int i = startIndex; i < s.size(); i++)
 		{
-			if (isString(s, startIndex, i))
+			if (isIP(s, startIndex, i))
 			{
-				string st = s.substr(startIndex, i - startIndex + 1);
-				str_path.push_back(st);
+				s.insert(s.begin() + i + 1, '.');
+				pointNum++;
+				backtracking(s, i + 2, pointNum);
+				pointNum--;
+				s.erase(s.begin() + i + 1);
 			}
-			else {
-				continue;
+			else
+			{
+				break;
 			}
-
-			backtracking(s, i + 1);
-			str_path.pop_back();
 		}
 	}
-
-
-
 
 };

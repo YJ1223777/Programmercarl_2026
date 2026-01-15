@@ -5,7 +5,8 @@ int main()
 	//Backtracking back_track;
 	Backtracking* back_track = new Backtracking();
 	vector<vector<int>> result;
-	//vector<string> str_list;
+	vector<vector<string>> str_result;
+	vector<string> str_list;
 
 	//result = back_track->combine(4, 2);
 
@@ -16,6 +17,9 @@ int main()
 	//vector<int> candidates = { 2, 5, 2, 1, 2 };
 	//result = back_track->combinationSum2(candidates, 5);
 
+	//str_result = back_track->partition("aab");
+
+	str_list = back_track->restoreIpAddresses("25525511135");
 
 	cout << "Backtracking" << endl;
 
