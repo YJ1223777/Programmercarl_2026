@@ -19,7 +19,10 @@ int main()
 
 	//str_result = back_track->partition("aab");
 
-	str_list = back_track->restoreIpAddresses("25525511135");
+	//str_list = back_track->restoreIpAddresses("25525511135");
+
+	vector<int> nums = { 1, 2, 3};
+	result = back_track->subsets(nums);
 
 	cout << "Backtracking" << endl;
 

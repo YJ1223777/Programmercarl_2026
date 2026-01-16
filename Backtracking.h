@@ -68,10 +68,18 @@ public:
 
 
 	// leetcode 93 复原 IP 地址
-	vector<string> restoreIpAddresses(string s) {
-		str_list.clear();
-		backtracking(s, 0, 0);
-		return str_list;
+	//vector<string> restoreIpAddresses(string s) {
+	//	str_list.clear();
+	//	backtracking(s, 0, 0);
+	//	return str_list;
+	//}
+
+
+	// leetcode 78 子集
+	vector<vector<int>> subsets(vector<int>& nums) {
+		result.clear();
+		backtracking(nums, 0);
+		return result;
 	}
 
 
@@ -250,59 +258,75 @@ private:
 	//}
 
 
-	bool isIP(const string& str, int start, int end)
+	//// 判断IP是否符合规定
+	//bool isIP(const string& str, int start, int end)
+	//{
+	//	if (start > end)
+	//	{
+	//		return false;
+	//	}
+
+	//	if (str[start] == '0' && start != end)
+	//	{
+	//		return false;
+	//	}
+
+	//	int num = 0;
+	//	for (int i = start; i <= end; i++)
+	//	{
+	//		if (str[i] < '0' || str[i] > '9')
+	//		{
+	//			return false;
+	//		}
+	//		num = num * 10 + str[i] - '0';
+	//		if (num > 255)
+	//		{
+	//			return false;
+	//		}
+	//	}
+	//	return true;
+	//}
+
+	//// leetcode 93 复原 IP 地址
+	//void backtracking(string& s, int startIndex, int pointNum)
+	//{
+	//	if (pointNum == 3)
+	//	{
+	//		if (isIP(s, startIndex, s.size() -1))
+	//		{
+	//			str_list.push_back(s);
+	//		}
+	//		return;
+	//	}
+
+	//	for (int i = startIndex; i < s.size(); i++)
+	//	{
+	//		if (isIP(s, startIndex, i))
+	//		{
+	//			s.insert(s.begin() + i + 1, '.');
+	//			pointNum++;
+	//			backtracking(s, i + 2, pointNum);
+	//			pointNum--;
+	//			s.erase(s.begin() + i + 1);
+	//		}
+	//		else
+	//		{
+	//			break;
+	//		}
+	//	}
+	//}
+
+
+	// leetcode 78 子集
+	void backtracking(vector<int>& num, int startIndex)
 	{
-		if (start > end)
-		{
-			return false;
-		}
+		result.push_back(patch);
 
-		if (str[start] == '0' && start != end)
+		for (int i = startIndex; i < num.size(); i++)
 		{
-			return false;
-		}
-
-		int num = 0;
-		for (int i = start; i <= end; i++)
-		{
-			if (str[i] < '0' || str[i] > '9')
-			{
-				return false;
-			}
-			num = num * 10 + str[i] - '0';
-			if (num > 255)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
-	void backtracking(string& s, int startIndex, int pointNum)
-	{
-		if (pointNum == 3)
-		{
-			if (isIP(s, startIndex, s.size() -1))
-			{
-				str_list.push_back(s);
-			}
-			return;
-		}
-
-		for (int i = startIndex; i < s.size(); i++)
-		{
-			if (isIP(s, startIndex, i))
-			{
-				s.insert(s.begin() + i + 1, '.');
-				pointNum++;
-				backtracking(s, i + 2, pointNum);
-				pointNum--;
-				s.erase(s.begin() + i + 1);
-			}
-			else
-			{
-				break;
-			}
+			patch.push_back(num[i]);
+			backtracking(num, i + 1);
+			patch.pop_back();
 		}
 	}
 
