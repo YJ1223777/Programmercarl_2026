@@ -76,10 +76,16 @@ public:
 
 
 	// leetcode 78 子集
-	vector<vector<int>> subsets(vector<int>& nums) {
-		result.clear();
-		backtracking(nums, 0);
-		return result;
+	//vector<vector<int>> subsets(vector<int>& nums) {
+	//	result.clear();
+	//	backtracking(nums, 0);
+	//	return result;
+	//}
+
+
+	// leetcode 90 子集II
+	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+
 	}
 
 
@@ -318,18 +324,23 @@ private:
 
 
 	// leetcode 78 子集
-	void backtracking(vector<int>& num, int startIndex)
+	//void backtracking(vector<int>& num, int startIndex)
+	//{
+	//	result.push_back(patch);
+
+	//	for (int i = startIndex; i < num.size(); i++)
+	//	{
+	//		patch.push_back(num[i]);
+	//		backtracking(num, i + 1);
+	//		patch.pop_back();
+	//	}
+	//}
+
+
+	// leetcode 90 子集II
+	void backtracking(vector<int>& num, int startIndex) 
 	{
-		result.push_back(patch);
-
-		for (int i = startIndex; i < num.size(); i++)
-		{
-			patch.push_back(num[i]);
-			backtracking(num, i + 1);
-			patch.pop_back();
-		}
+	
 	}
-
-
 
 };
