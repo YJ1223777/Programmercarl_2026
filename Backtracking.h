@@ -85,7 +85,12 @@ public:
 
 	// leetcode 90 子集II
 	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-
+		patch.clear();
+		result.clear();
+		vector<bool> used(nums.size(), false);
+		sort(nums.begin(), nums.end());
+		backtracking(nums, 0, used);
+		return result;
 	}
 
 
@@ -338,9 +343,22 @@ private:
 
 
 	// leetcode 90 子集II
-	void backtracking(vector<int>& num, int startIndex) 
+	void backtracking(vector<int>& nums, int startIndex, vector<bool>& used) 
 	{
-	
+		result.push_back(patch);
+		for (int i = startIndex; i < nums.size(); i++)
+		{
+			if (i > 0 && nums[i] == nums[i-1] && used[i-1] == false)
+			{
+				continue;
+			}
+
+			patch.push_back(nums[i]);
+			used[i] = true;
+			backtracking(nums, i + 1, used);
+			used[i] = false;
+			patch.pop_back();
+		}
 	}
 
 };
