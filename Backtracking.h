@@ -94,6 +94,7 @@ public:
 	}
 
 
+
 private:
 	vector<vector<int>> result;
 	vector<int> patch;
