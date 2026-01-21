@@ -84,15 +84,23 @@ public:
 
 
 	// leetcode 90 子集II
-	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+	//vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+	//	patch.clear();
+	//	result.clear();
+	//	vector<bool> used(nums.size(), false);
+	//	sort(nums.begin(), nums.end());
+	//	backtracking(nums, 0, used);
+	//	return result;
+	//}
+
+
+	// leetcode 491 非递减子序列
+	vector<vector<int>> findSubsequences(vector<int>& nums) {
 		patch.clear();
 		result.clear();
-		vector<bool> used(nums.size(), false);
-		sort(nums.begin(), nums.end());
-		backtracking(nums, 0, used);
+		backtracking(nums, 0);
 		return result;
 	}
-
 
 
 private:
@@ -343,21 +351,46 @@ private:
 	//}
 
 
-	// leetcode 90 子集II
-	void backtracking(vector<int>& nums, int startIndex, vector<bool>& used) 
+	//// leetcode 90 子集II
+	//void backtracking(vector<int>& nums, int startIndex, vector<bool>& used) 
+	//{
+	//	result.push_back(patch);
+	//	for (int i = startIndex; i < nums.size(); i++)
+	//	{
+	//		if (i > 0 && nums[i] == nums[i-1] && used[i-1] == false)
+	//		{
+	//			continue;
+	//		}
+
+	//		patch.push_back(nums[i]);
+	//		used[i] = true;
+	//		backtracking(nums, i + 1, used);
+	//		used[i] = false;
+	//		patch.pop_back();
+	//	}
+	//}
+
+
+	// leetcode 491 非递减子序列
+	void backtracking(vector<int>& nums, int startIndex)
 	{
-		result.push_back(patch);
+		if (patch.size() > 1)
+		{
+			result.push_back(patch);
+		}
+
+		unordered_set<int> used;
 		for (int i = startIndex; i < nums.size(); i++)
 		{
-			if (i > 0 && nums[i] == nums[i-1] && used[i-1] == false)
+			if (!patch.empty() && nums[i] < patch.back() 
+				|| used.find(nums[i])!=used.end())
 			{
 				continue;
 			}
 
 			patch.push_back(nums[i]);
-			used[i] = true;
-			backtracking(nums, i + 1, used);
-			used[i] = false;
+			used.insert(nums[i]);
+			backtracking(nums, i + 1);
 			patch.pop_back();
 		}
 	}
