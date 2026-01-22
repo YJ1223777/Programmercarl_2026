@@ -24,6 +24,7 @@ public:
 	//	return result;
 	//}
 
+
 	// leetcode 216 组合总和 III
 	//vector<vector<int>> combinationSum3(int k, int n) 
 	//{
@@ -31,12 +32,14 @@ public:
 	//	return result;
 	//}
 
+
 	// leetcode 17 电话号码的字母组合
 	//vector<string> letterCombinations(string digits) 
 	//{
 	//	backtracking(digits, 0);
 	//	return str_list;
 	//}
+
 
 	// leetcode 39 组合总和
 	//vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
@@ -95,10 +98,20 @@ public:
 
 
 	// leetcode 491 非递减子序列
-	vector<vector<int>> findSubsequences(vector<int>& nums) {
+	//vector<vector<int>> findSubsequences(vector<int>& nums) {
+	//	patch.clear();
+	//	result.clear();
+	//	backtracking(nums, 0);
+	//	return result;
+	//}
+
+
+	// leetcode 46 全排列
+	vector<vector<int>> permute(vector<int>& nums) {
 		patch.clear();
 		result.clear();
-		backtracking(nums, 0);
+		vector<bool> used(nums.size(), false);
+		backtracking(nums, used);
 		return result;
 	}
 
@@ -371,28 +384,55 @@ private:
 	//}
 
 
-	// leetcode 491 非递减子序列
-	void backtracking(vector<int>& nums, int startIndex)
+	//// leetcode 491 非递减子序列
+	//void backtracking(vector<int>& nums, int startIndex)
+	//{
+	//	if (patch.size() > 1)
+	//	{
+	//		result.push_back(patch);
+	//	}
+
+	//	unordered_set<int> used;
+	//	for (int i = startIndex; i < nums.size(); i++)
+	//	{
+	//		if (!patch.empty() && nums[i] < patch.back() 
+	//			|| used.find(nums[i])!=used.end())
+	//		{
+	//			continue;
+	//		}
+
+	//		patch.push_back(nums[i]);
+	//		used.insert(nums[i]);
+	//		backtracking(nums, i + 1);
+	//		patch.pop_back();
+	//	}
+	//}
+
+
+	// leetcode 46 全排列	
+	void backtracking(vector<int>& nums, vector<bool>& used)
 	{
-		if (patch.size() > 1)
+		if (patch.size() == nums.size())
 		{
 			result.push_back(patch);
 		}
 
-		unordered_set<int> used;
-		for (int i = startIndex; i < nums.size(); i++)
+		for (int i = 0; i < nums.size(); i++)
 		{
-			if (!patch.empty() && nums[i] < patch.back() 
-				|| used.find(nums[i])!=used.end())
+			if (used[i] == false)
+			{
+				patch.push_back(nums[i]);
+				used[i] = true;
+			}
+			else
 			{
 				continue;
 			}
-
-			patch.push_back(nums[i]);
-			used.insert(nums[i]);
-			backtracking(nums, i + 1);
+			backtracking(nums, used);
+			used[i] = false;
 			patch.pop_back();
 		}
 	}
-
+	
 };
+
