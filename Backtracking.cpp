@@ -24,6 +24,8 @@ int main()
 	//vector<int> nums = { 1, 2, 3};
 	//result = back_track->subsets(nums);
 
+	vector<int> nums = { 1, 2, 1 };
+	result = back_track->permuteUnique(nums);
 
 	cout << "Backtracking" << endl;
 

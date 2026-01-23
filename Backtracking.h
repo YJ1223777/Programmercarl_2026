@@ -107,10 +107,21 @@ public:
 
 
 	// leetcode 46 全排列
-	vector<vector<int>> permute(vector<int>& nums) {
+	/*vector<vector<int>> permute(vector<int>& nums) {
 		patch.clear();
 		result.clear();
 		vector<bool> used(nums.size(), false);
+		backtracking(nums, used);
+		return result;
+	}*/
+
+
+	// leetcode 47 全排列 II
+	vector<vector<int>> permuteUnique(vector<int>& nums) {
+		patch.clear();
+		result.clear();
+		vector<bool> used(nums.size(), false);
+		sort(nums.begin(), nums.end());
 		backtracking(nums, used);
 		return result;
 	}
@@ -410,7 +421,7 @@ private:
 
 
 	// leetcode 46 全排列	
-	void backtracking(vector<int>& nums, vector<bool>& used)
+	/*void backtracking(vector<int>& nums, vector<bool>& used)
 	{
 		if (patch.size() == nums.size())
 		{
@@ -432,7 +443,30 @@ private:
 			used[i] = false;
 			patch.pop_back();
 		}
+	}*/
+
+
+	// leetcode 47 全排列 II
+	void backtracking(vector<int>& nums, vector<bool>& used)
+	{
+		if (patch.size() == nums.size())
+		{
+			result.push_back(patch);
+		}
+
+		for (int i = 0; i < nums.size(); i++)
+		{
+			if (i > 0 && nums[i] == nums[i-1] && used[i-1] == false || used[i] == true)
+			{
+				continue;
+			}
+			patch.push_back(nums[i]);
+			used[i] = true;
+			backtracking(nums, used);
+			used[i] = false;
+			patch.pop_back();
+		}
 	}
-	
+
 };
 
