@@ -117,13 +117,19 @@ public:
 
 
 	// leetcode 47 全排列 II
-	vector<vector<int>> permuteUnique(vector<int>& nums) {
-		patch.clear();
-		result.clear();
-		vector<bool> used(nums.size(), false);
-		sort(nums.begin(), nums.end());
-		backtracking(nums, used);
-		return result;
+	//vector<vector<int>> permuteUnique(vector<int>& nums) {
+	//	patch.clear();
+	//	result.clear();
+	//	vector<bool> used(nums.size(), false);
+	//	sort(nums.begin(), nums.end());
+	//	backtracking(nums, used);
+	//	return result;
+	//}
+
+
+	// leetcode 51 N 皇后
+	vector<vector<string>> solveNQueens(int n) {
+
 	}
 
 
@@ -447,7 +453,7 @@ private:
 
 
 	// leetcode 47 全排列 II
-	void backtracking(vector<int>& nums, vector<bool>& used)
+	/*void backtracking(vector<int>& nums, vector<bool>& used)
 	{
 		if (patch.size() == nums.size())
 		{
@@ -466,7 +472,16 @@ private:
 			used[i] = false;
 			patch.pop_back();
 		}
+	}*/
+
+
+	// leetcode 51 N 皇后
+	void backtracking(int n)
+	{
+	
+	
 	}
+	
 
 };
 
