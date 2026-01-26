@@ -475,6 +475,7 @@ private:
 	}*/
 
 
+
 	// leetcode 51 N »Êºó
 	void backtracking(int n)
 	{
