@@ -27,6 +27,9 @@ int main()
 	//vector<int> nums = { 1, 2, 1 };
 	//result = back_track->permuteUnique(nums);
 
+
+	//str_result = back_track->solveNQueens(4);
+
 	cout << "Backtracking" << endl;
 
 	delete back_track;

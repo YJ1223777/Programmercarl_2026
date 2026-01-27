@@ -128,8 +128,17 @@ public:
 
 
 	// leetcode 51 N 皇后
-	vector<vector<string>> solveNQueens(int n) {
+	//vector<vector<string>> solveNQueens(int n) {
+	//	str_result.clear();
+	//	vector<string> board(n, string(n, '.'));
+	//	backtracking(n, 0, board);
+	//	return str_result;
+	//}
 
+
+	// leetcode 37 解数独
+	void solveSudoku(vector<vector<char>>& board) {
+		backtracking(board);
 	}
 
 
@@ -475,14 +484,114 @@ private:
 	}*/
 
 
+	//bool isValid(int n, int row, int col, vector<string>& board)
+	//{
+	//	// 判断列
+	//	for (int i = 0; i < row; i++)
+	//	{
+	//		if (board[i][col] == 'Q')
+	//			return false;
+	//	}
 
-	// leetcode 51 N 皇后
-	void backtracking(int n)
+	//	// 45
+	//	for (int i = row-1, j = col-1; i >= 0 && j >= 0; i--, j--)
+	//	{
+	//		if (board[i][j] == 'Q')
+	//			return false;
+	//	}
+
+	//	// 135
+	//	for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++)
+	//	{
+	//		if (board[i][j] == 'Q')
+	//			return false;
+	//	}
+	//	return true;
+	//
+	//}
+
+
+	//// leetcode 51 N 皇后
+	//void backtracking(int n, int row, vector<string>& board)
+	//{
+	//	if (row == n)
+	//	{
+	//		str_result.push_back(board);
+	//		return;
+	//	}
+
+	//	for (int col = 0; col < n; col++)
+	//	{
+	//		if (isValid(n, row, col, board))
+	//		{
+	//			board[row][col] = 'Q';
+	//			backtracking(n, row + 1, board);
+	//			board[row][col] = '.';
+	//		}
+	//	}
+	//}
+
+
+	bool isValid(int row, int col, char val, vector<vector<char>>& board) 
 	{
-	
-	
+		for (int i = 0; i < 9; i++)
+		{
+			if (board[i][col] == val)
+			{
+				return false;
+			}
+		}
+
+		for (int j = 0; j < 9; j++)
+		{
+			if (board[row][j] == val)
+			{
+				return false;
+			}
+		}
+
+		int startRow = (row / 3) * 3;
+		int startCol = (col / 3) * 3;
+		for (int i = startRow; i < startRow + 3; i++)
+		{
+			for (int j = startCol; j < startCol + 3; j++)
+			{
+				if (board[i][j] == val)
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	// leetcode 37 解数独
+	bool backtracking(vector<vector<char>>& board)
+	{
+		for (int i = 0; i < board.size(); i++)
+		{
+			for (int j = 0; j < board[0].size(); j++)
+			{
+				if (board[i][j] == '.')
+				{
+					for (char c = '1'; c <= '9'; c++)
+					{
+						if (isValid(i, j, c, board))
+						{
+							board[i][j] = c;
+							if (backtracking(board))
+							{
+								return true;
+							}
+							board[i][j] = '.';
+						}
+					}
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
-
 };
-
