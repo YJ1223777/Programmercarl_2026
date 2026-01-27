@@ -39,6 +39,9 @@
     <ClCompile Include="Backtracking.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="GreedyAlgorithm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h">
@@ -60,6 +63,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Backtracking.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GreedyAlgorithm.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

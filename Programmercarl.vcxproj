@@ -130,10 +130,13 @@
     <ClCompile Include="Array.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Backtracking.cpp" />
+    <ClCompile Include="Backtracking.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="BinaryTree.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GreedyAlgorithm.cpp" />
     <ClCompile Include="HashTable.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -154,6 +157,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="Backtracking.h" />
     <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="GreedyAlgorithm.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="LinkNode.h" />
     <ClInclude Include="MyStackQueue.h" />
